@@ -7,8 +7,38 @@ padding: 30px;
 }
 
 .topnavSpace{
-
 padding-right: 175px
-
-
+color: #222;
+font-family: monospace;
+line-height: 1.1em;
+padding: 1em;
+border: 1px solid #ddd;
+background-color: #f9f9f9;
+}
+pre {
+border: 1px solid #bcd;
+overflow: auto;
+}
+pre, code, tt {
+background-color: #ebf1f5;
+color: #222;
+font-family: monospace;
+}
+pre, .mw-code {
+line-height: 1.1em;
+}
+pre, .mw-code {
+padding: 1em;
+border: 1px solid #ddd;
+color: black;
+background-color: #f9f9f9;
+}
+pre, code, tt, kbd, samp, .mw-code {
+font-family: monospace,Courier;
+}
+pre, xmp, plaintext, listing {
+display: block;
+font-family: monospace;
+white-space: pre;
+margin: 1em 0px;
 }

@@ -44,8 +44,8 @@
     <h4>Tutorials</h4>
     
 <hr>
-
-<a href="#" id="javasetup">Setting up java on ubuntu</a>
+<pre>
+<a href="#" id="javasetup">Setting up java on ubuntu</a></pre>
 <hr>
 <p>
 <ol>
@@ -68,7 +68,7 @@ Your <b>bashrc</b> should look like <a href="bashrc.txt" target="_blank">bashrc<
 
 </p>
 <hr>
-      <a href="#">Installing hadoop on sudo distribution mode ubuntu</a>
+      <pre><a href="#">Installing hadoop on sudo distribution mode ubuntu</a></pre>
       <hr>
         <p>
           <ol>
@@ -97,7 +97,7 @@ now your system is setup and installed with hadoop, format your namenode(only th
       </ol>
 </p>
 <hr>
-<a href="#" target="_blank">Installing storm</a>
+<pre><a href="#" target="_blank">Installing storm</a></pre>
 <hr>
 <ol>
 <li>
@@ -108,7 +108,7 @@ Install JDK 1.6 or greater follow tutorial 1</li>
 <li>Extract both the tarballs and move them to <b>/usr/lib</b></li>
 <li>Your should have something similar to <b>/usr/lib/zookeeper-3.4.6</b> and <b>/usr/lib/storm-0.9.2</b></li>
 <li>update your ~/.bashrc with zookeeper and storm locations, <a href="bashrc.txt" target="_blank">here</a></li>
-<li>create a <b>zoo.cfg</b> file under <b>/usr/lib/zookeeper-3.4.6/conf</b> like <a href="zoo.cfg" target="_blank">this</a></li>
+<li>create a <b>zoo.cfg</b> file under <b>/usr/lib/zookeeper-3.4.6/conf</b> like <a href="zoo.txt" target="_blank">this</a></li>
 <li>the dataDir settings in <b>zoo.cfg</b> is different for your machine(change it accordingly)</li>
 <li>Done!! you have installed storm and zookeeper, lets run them and check </li>
 <li>start zookeeper using <b>zkServer.sh start</b>, you can check using <b>ZkCli.sh</b> and <b>ls /</b> </li>
