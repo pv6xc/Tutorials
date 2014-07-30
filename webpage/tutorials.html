@@ -96,8 +96,30 @@ now your system is setup and installed with hadoop, format your namenode(only th
 
       </ol>
 </p>
-
-    
+<hr>
+<a href="#" target="_blank">Installing storm</a>
+<hr>
+<ol>
+<li>
+Install JDK 1.6 or greater follow tutorial 1</li>
+<li>Install python 2.6.6 or greater from <a href="https://www.python.org/downloads/" target="_blank">here</a></li>
+<li>Download zookeeper tarball from <a href="http://zookeeper.apache.org/releases.html" target="_blank">here</a> </li>
+<li>Download apache storm tarball from <a href="https://storm.incubator.apache.org/downloads.html" target="_blank">here</a> </li>
+<li>Extract both the tarballs and move them to <b>/usr/lib</b></li>
+<li>Your should have something similar to <b>/usr/lib/zookeeper-3.4.6</b> and <b>/usr/lib/storm-0.9.2</b></li>
+<li>update your ~/.bashrc with zookeeper and storm locations, <a href="bashrc.txt" target="_blank">here</a></li>
+<li>create a <b>zoo.cfg</b> file under <b>/usr/lib/zookeeper-3.4.6/conf</b> like <a href="zoo.txt" target="_blank">this</a></li>
+<li>the dataDir settings in <b>zoo.cfg</b> is different for your machine(change it accordingly)</li>
+<li>Done!! you have installed storm and zookeeper, lets run them and check </li>
+<li>start zookeeper using <b>zkServer.sh start</b>, you can check using <b>ZkCli.sh</b> and <b>ls /</b> </li>
+<li>run the following scripts to start storm<br>
+<b>storm nimbus</b><br>
+   <b>storm supervisor</b><br>
+<b>storm ui</b><br>
+</li>
+<li>You can see the storm UI at <b>http://localhost:8080</b> </li>
+<li>Cheers</li>
+<hr>
     </div>
 
 
