@@ -18,7 +18,7 @@
   </head>
   <body>
 
-<div class="topnavSpace">
+<div class="topnav">
 
     <br>
       <div align="center">
@@ -45,7 +45,7 @@
     
     <div class="research">
 
-      My current research interests include data anlaysis on distributed systems. 
+      My current research interests include Big data anlaysis , distributed systems and  parallel computing 
 
     </div>
 

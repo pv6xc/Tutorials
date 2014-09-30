@@ -106,12 +106,16 @@ Install JDK 1.6 or greater follow tutorial 1</li>
 <li>Download zookeeper tarball from <a href="http://zookeeper.apache.org/releases.html" target="_blank">here</a> </li>
 <li>Download apache storm tarball from <a href="https://storm.incubator.apache.org/downloads.html" target="_blank">here</a> </li>
 <li>Extract both the tarballs and move them to <b>/usr/lib</b></li>
+<li><b>mv ~/Downloads/zookeeper-3.4.6 /usr/lib/</b> </li>
+<li><b>mv ~/Downloads/storm-0.9.2 /usr/lib/</b></li>
 <li>Your should have something similar to <b>/usr/lib/zookeeper-3.4.6</b> and <b>/usr/lib/storm-0.9.2</b></li>
 <li>update your ~/.bashrc with zookeeper and storm locations, <a href="bashrc.txt" target="_blank">here</a></li>
 <li>create a <b>zoo.cfg</b> file under <b>/usr/lib/zookeeper-3.4.6/conf</b> like <a href="zoo.txt" target="_blank">this</a></li>
+<li><b>zoo.cfg</b> file is referred to save the temporary data for zookeeper, storm is reliable because of zookeper.</li>
+<li>Even if storm server(nimbus) goes down all the data is stored in zookeeper.</li>
 <li>the dataDir settings in <b>zoo.cfg</b> is different for your machine(change it accordingly)</li>
 <li>Done!! you have installed storm and zookeeper, lets run them and check </li>
-<li>start zookeeper using <b>zkServer.sh start</b>, you can check using <b>ZkCli.sh</b> and <b>ls /</b> </li>
+<li>start zookeeper using <b>zkServer.sh start</b>, you can check using <b>zkCli.sh</b> and <b>ls /</b> </li>
 <li>run the following scripts to start storm<br>
 <b>storm nimbus</b><br>
    <b>storm supervisor</b><br>
@@ -119,9 +123,201 @@ Install JDK 1.6 or greater follow tutorial 1</li>
 </li>
 <li>You can see the storm UI at <b>http://localhost:8080</b> </li>
 <li>Cheers</li>
-<hr>
-    </div>
 
+   </div>
+<div>
+<hr>
+<pre><a href="#" target="_blank">Using storm : Basic storm example</a></pre>
+<hr>
+<ol>
+<li>
+Make sure your storm ui is started and running, http://localhost:8080
+</li>
+<li>
+Clone the word count problem from this location
+<b><a href="https://github.com/apache/incubator-storm.git" target="_blank">here</a></b>
+</li>
+<li>
+<b>git clone git://github.com/apache/incubator-storm.git && cd incubator-storm/examples/storm-starter</b>
+</li>
+<li>
+Install maven on your machine, you can download it from <b><a href="http://maven.apache.org/download.cgi" target="_blank">here</a></b> <br>
+On Ubuntu you can install using <b>sudo apt-get install maven</b>
+</li>
+<li>
+Compile the projects and package using below commands
+<ul >
+<li>
+<b>mvn compile</b>
+</li>
+<li>
+<b>mvn package</b>
+</li>
+</ul>
+</li>
+<li>
+Your package is available in target folder(a fat jar)
+</li>
+<li>
+You can run the topology in two ways
+<ul>
+<li>
+<b>Localmode :</b> Runs only once. Topology not deployed to server.
+<b><address>storm jar storm-starter-*-jar-with-dependencies.jar storm.starter.RollingTopWords</address></b>
+</li>
+<br/>
+<li>
+<b>Remotemode :</b> Deployed to storm as topology, and can be managed to UI.
+<b><address>storm jar storm-starter-*-jar-with-dependencies.jar storm.starter.RollingTopWords production-topology remote</address></b>
+</li>
+</ul>
+</li>
+<li>
+Now you can see the started topology <b>production-topology</b> in your storm UI
+</li>
+<li>
+You can find more details <b><a href="https://github.com/apache/incubator-storm/tree/master/examples/storm-starter" target="_blank">here</a></b>
+</li>
+
+</ol>
+
+<hr>
+<pre><a href="#">Installing IBM BigInsights on Linux</a></pre>
+<hr>
+
+<div>
+<ol>
+<li>
+Will post soon, you can find the reference <a href="http://dougdockery.com/?p=65" target="_blank">here</a>
+</li>
+</ol>
+</div>
+
+
+<hr>
+<pre><a href="#">Installing Kafka</a></pre>
+<hr>
+
+<div>
+<ol>
+<li>
+Download apache kafka from <a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.8.1.1/kafka_2.9.2-0.8.1.1.tgz">here</a>
+</li>
+<li>
+unzip the file using <b>tar -zxvf kafka-<version></b>
+</li>
+<li>
+Now start the zookeeper in your machine, if not start the zookeeper in the installer <br/>
+<b>bin/zookeeper-server-start.sh config/zookeeper.properties</b>
+</li>
+<li>
+Now start the kafka <br/>
+<b>bin/kafka-server-start.sh config/server.properties</b>
+</li>
+<li>
+Create a topic to produce and consume <br/>
+<b>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</b> 
+</li>
+<li>Create a producer for the topic <br/>
+<b>bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</b>
+</li>
+<li>
+Type a message in the producer window
+</li>
+<li>Create a consumer for the topic </br>
+<b>bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</b>
+</li>
+<li>
+You can see the messages in your consumer window!!!<br/>
+Installation complete !!!!
+</li>
+<li>
+Reference  <a href="https://kafka.apache.org/08/quickstart.html" target="_blank">here</a> 
+</li>
+</ol>
+</div>
+<hr>
+<pre><a href="#mapreduce" id="mapreduce">Run a map reduce jobs from eclipse : Windows/Linux/MacOSX</a></pre>
+<hr>
+
+<div>
+<ol>
+<li>
+Create a simple java project or maven project with all the hadoop dependencies
+</li>
+<li>
+In your map reduce Job configure the location to <b>remotehost:8020</b>
+.You dont need to do this, if your data is in local file system.
+</li>
+<li>
+Pass the input and ouput folders as arguments.
+</li>
+<li>
+Run the program to see the map reduce run in standalone mode and the output saved to folder in your workspace
+</li>
+<li>
+<b><a href="WordCount.txt" target="_blank">Here</a></b> is the source code.
+</li>
+<li> Required jar files are <a href="https://www.dropbox.com/s/2uzg591gtw33osy/lib.zip?dl=0" target="_blank">here</a>
+</li>
+</ol>
+</div>
+
+<hr>
+<pre><a href="#stormeclipse" id="stormeclipse">Using eclipse to run storm starter</a></pre>
+<hr>
+
+<div>
+<ol>
+<li>
+<b>Using Maven</b>
+</li>
+<ol>
+<li>
+Install maven plugin in your eclipse. Instructions are <a href="https://www.eclipse.org/m2e/download/" target="_blank">here</a>
+</li>
+<li>
+run <b>git clone git://github.com/apache/incubator-storm.git</b> to get the storm starter code into your local.
+</li>
+<li>
+Import the maven project in <b>example</b> folder into your eclipse, and compile.
+</li>
+<li>
+Once compiled, right click the topology class you want to start and run as java application.
+</li>
+
+</ol>
+
+<li>
+<b>Using Manual imports</b>
+</li>
+<ol>
+<li>
+Make sure you have storm installed in your machine.
+</li>
+<li>
+Create a new java project in eclipse.
+</li>
+<li>
+Import all the jars from <b>$STORM_HOME/lib</b> as external jars into the project.
+</li>
+<li>
+Create a topology and run it in local mode.
+</li>
+<li>
+Storm starter has sample toplogies, which you can try. 
+</li>
+<li>
+With <b>PrintSampleStream.java</b> you can stream tweets into bolts. You need <b>twitter4.jar</b> from <a href="http://twitter4j.org/archive/twitter4j-4.0.2.zip" target="_blank">here</a>
+</li>
+</ol>
+
+
+</ol>
+</div>
+
+ 
+</div>
 
 </div>
   

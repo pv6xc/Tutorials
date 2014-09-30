@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title>~ achilles</title>
+
+   <link rel="stylesheet" type="text/css" href="css/common.css">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53282710-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <body>
+
+<div class="topnav">
+
+    <br>
+      <div align="center">
+        <hr>
+  
+      <ul >
+        <li>
+        <a href="index.html">home</a>
+        </li>
+        <li>
+          <a href="projects.html">projects</a>
+        </li>
+        <li>
+          <a href="research.html">research</a>
+        </li>
+        <li>
+          <a href="tutorials.html">tutorial</a>
+        </li>
+      </ul>
+ 
+      </div>
+
+    <div class="aboutme">
+<hr>
+<h4>About me</h4>
+      <p class="about">
+        A programming enthusaist and a <a href="http://en.wikipedia.org/wiki/Hacker" target="_blank">hacker</a> at heart, who is always eager to learn new technologies and develop something fun.<br>
+        Graduated with distinction o_O from <a href="http://www.andhrauniversity.edu.in/">Andhra University College of engineering(A)</a>  in 2011, with a bachelors degree in Electrical and Electronics Engineering. <br>
+        Started my IT career with <a href="http://www.infosys.com">Infosys Ltd</a>  at <a href="http://www.glassdoor.com/Photos/Infosys-Office-Photos-E7927.htm">Mysore</a> on Jul 18 2011, which ended on Dec 01 2013 in <a href="http://en.wikipedia.org/wiki/Mahindra_World_City,_New_Chennai">Chennai</a>.<br>
+        Currently pursuing Graduate course in Computer science at School of Computing and Engineering at <a href="http://www.umkc.edu">UMKC</a>, with a specialization in Software Engineering.
+      </p>
+
+    </div>
+
+<div class="contact">
+<hr>
+<address>
+Email ID "pv6xc at mail dot umkc dot edu"<br>
+Kansas City, Missouri<br>
+USA
+</address>
+
+</div>
+
+</div>
+  
+
+  </body>
+</html>

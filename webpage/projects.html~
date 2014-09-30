@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title>~ achilles</title>
+
+   <link rel="stylesheet" type="text/css" href="css/common.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53282710-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <body>
+<div class="topnav">
+
+    <br>
+      <div align="center">
+        <hr>
+      <ul >
+        <li>
+        <a href="index.html">home</a>
+        </li>
+        <li>
+          <a href="projects.html" >projects</a>
+        </li>
+        <li>
+          <a href="research.html">research</a>
+        </li>
+           <li>
+          <a href="tutorials.html">tutorial</a>
+        </li>
+      </ul>
+      </div>
+
+    <div class="project">
+<hr>
+    <h4>Projects</h4>
+    
+        <a href="http://www.rbs.co.uk" target="_blank">Digital transformation for Royal Bank of Scotland</a>
+            <p class="about">
+           Developed and supported portal application integrating third party applications such as Live-chat, Via – Michelin maps and Atlas. Using HTML, CSS, Java script , JSF and XML in a proprietary environment utilizing Software Oriented Architectur. Worked with IBM WebSphere Portal Server 7.0 and Application Server 7.0 and IBM Lotus content management systems.<br> Managed and fixed issues during Non-functional and penetration testing. Worked in both Waterfall and agile software development methodologies. 
+            </p>
+          <a href="http://bluehatsstarter.ng.bluemix.net/index.jsp" target="_blank">Tweet sentiment analysis</a>
+          <p>
+            Built a tweet text analysis application, which would classify the incoming tweets into happy or sad based on the text analysis algorithm and results are stored in MySql database. Used a mapreduce job to analyse the tweet stream. This project is for the course Knowledge discovery and management course at UMKC. Used the IBM Big Insights VM image for this project. Ported the same app to IBM Bluemix. 
+          </p>
+
+    
+          <a href="https://github.com/CS560KDM/CS560-Project/tree/master/iteration4/FlappyCow-master" target="_blank">Sensor based Fluffy Cow</a>
+          <p>Modified a popular open source version of <a href="https://github.com/cubei/FlappyCow" target="_blank">fluffy cow</a> android game to work with the <a href="http://www.ti.com/ww/en/wireless_connectivity/sensortag/index.shtml?INTC=SensorTag&HQS=sensortag" target="_blank"> sensor tag</a> . Created a service class which could connect to the bluetooth low energy device (sensor tag) and enable its accelerometer sensor to detect the gestures made with the sensor tag. Used the same gestures to trigger the touch event in the application. 
+          </p>
+
+    
+    </div>
+
+
+</div>
+  
+
+  </body>
+</html>
