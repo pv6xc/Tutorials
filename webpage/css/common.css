@@ -5,6 +5,20 @@ padding-left: 30px;
 padding: 30px;
 
 }
+body
+{
+background: #CACACB; 
+font-size:16px;
+font-family:"Times New Roman";
+}
+img{
+float:right
+
+}
+a:link    {color:#000000; background-color:transparent}
+a:visited {color:#6373EB; background-color:transparent}
+a:hover   {color:#ff0000; background-color:transparent}
+a:active  {color:#ff0000; background-color:transparent}
 
 .topnavSpace{
 padding-right: 175px
