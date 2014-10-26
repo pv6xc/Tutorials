@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <id>urn:iweb:AE80E0A2-59A1-4A9C-B2FA-7183C46BC270</id>
+ <title>Page list Atom feed</title>
+ <updated>2014-10-25T19:36:00-05:00</updated>
+ <link rel="self" href="feed.xml"/>
+ <generator>iWeb</generator>
+ <author>
+  <name>iWeb</name>
+ </author>
+ <entry>
+  <id>urn:iweb:B7DA2B7F-0329-4D57-B740-E4B82DE8A428</id>
+  <title>About me</title>
+  <title xmlns="urn:iweb:">About me</title>
+  <in-navbar xmlns="urn:iweb:">B7DA2B7F-0329-4D57-B740-E4B82DE8A428</in-navbar>
+  <link rel="alternate" href="About_me.html"/>
+  <updated>2014-10-25T19:36:00.001-05:00</updated>
+  <content>About me</content>
+ </entry>
+ <entry>
+  <id>urn:iweb:B0C2733A-8C1C-48B1-B454-5DB46C8E3C81</id>
+  <title>Projects</title>
+  <title xmlns="urn:iweb:">Projects</title>
+  <in-navbar xmlns="urn:iweb:">B0C2733A-8C1C-48B1-B454-5DB46C8E3C81</in-navbar>
+  <link rel="alternate" href="Projects.html"/>
+  <updated>2014-10-25T19:36:00.002-05:00</updated>
+  <content>Projects</content>
+ </entry>
+ <entry>
+  <id>urn:iweb:76A2A2E6-4085-44C9-91A8-120AC6FF3239</id>
+  <title>Research</title>
+  <title xmlns="urn:iweb:">Research</title>
+  <in-navbar xmlns="urn:iweb:">76A2A2E6-4085-44C9-91A8-120AC6FF3239</in-navbar>
+  <link rel="alternate" href="Research.html"/>
+  <updated>2014-10-25T19:36:00.003-05:00</updated>
+  <content>Research</content>
+ </entry>
+ <entry>
+  <id>urn:iweb:519C82C3-5C4E-48AF-8149-049BE7904045</id>
+  <title>Tutorials</title>
+  <title xmlns="urn:iweb:">Tutorials</title>
+  <in-navbar xmlns="urn:iweb:">519C82C3-5C4E-48AF-8149-049BE7904045</in-navbar>
+  <link rel="alternate" href="Tutorials.html"/>
+  <updated>2014-10-25T19:36:00.004-05:00</updated>
+  <content>Tutorials</content>
+ </entry>
+ <entry>
+  <id>urn:iweb:CFE6EB99-C8D4-43FC-A5EC-F35A0413C3B2</id>
+  <title>Curriculum vitae</title>
+  <title xmlns="urn:iweb:">Curriculum vitae</title>
+  <in-navbar xmlns="urn:iweb:">CFE6EB99-C8D4-43FC-A5EC-F35A0413C3B2</in-navbar>
+  <link rel="alternate" href="Curriculum_vitae.html"/>
+  <updated>2014-10-25T19:36:00.005-05:00</updated>
+  <content>Curriculum vitae</content>
+ </entry>
+</feed>
