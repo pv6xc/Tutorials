@@ -20,6 +20,7 @@ import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
  
@@ -155,81 +156,63 @@ public class JsonHbaseLoader {
             		JSONParser jp = new JSONParser();
             		JSONObject tweetO = (JSONObject) jp.parse(tweet);
             		//check if tweet is created or deleted
-            		//if will process all the created tweets
+            		//Condition will process all the created tweets
             		if(tweetO.get("created_at")!=null){
-            			
-            			//get tweet details
-            			//start
-            			Long id = (Long)tweetO.get("id");
-            			String time = (String) tweetO.get("created_at");
-            			String tweetText = (String)tweetO.get("text");
-            			Long retweetCount = (Long)tweetO.get("retweet_count");
-            			String language = (String)tweetO.get("lang");
-            			String source = (String)tweetO.get("source");
-            			
-            			//this needs more parsing
-            			//String coordinates = (String)tweetO.get("coordinates");
-            			//String place = (String)tweetO.get("place");
-            			
-            			//get user data
-            			JSONObject user = (JSONObject) tweetO.get("user");
-            			String user_name = (String)user.get("name");
-            			Long followers_count = (Long)user.get("followers_count");
-            			Long friends_count = (Long)user.get("friends_count");
-            			Long favourites_count = (Long)user.get("favourites_count");
-            			Long statuses_count = (Long)user.get("statuses_count");
-            			String user_location = (String)user.get("location");	
-            			String timezone = (String)user.get("time_zone");
-            			
-            			//end
-            			
-            			
-            			//parsing the retweeted tweet data 
-            			// start
-            			
+            			Tweet tw = (Tweet)parseTweet(tweetO);
+            			/************************************ retweet start ********************************/
             			JSONObject rt = (JSONObject)tweetO.get("retweeted_status");
-            			if(rt!=null){
-            			Long idrt = (Long)rt.get("id");
-            			String timert = (String) rt.get("created_at");
-            			String tweetTextrt = (String)rt.get("text");
-            			Long retweetCountrt = (Long)rt.get("retweet_count");
-            			String languagert = (String)rt.get("lang");
-            			String sourcert = (String)rt.get("source");
-            			
-            			//this needs more parsing
-            			//String coordinates = (String)tweetO.get("coordinates");
-            			//String place = (String)tweetO.get("place");
-            			
-            			//get user data for retweet
-            			JSONObject userrt = (JSONObject) rt.get("user");
-            			String user_namert = (String)userrt.get("name");
-            			Long followers_countrt = (Long)userrt.get("followers_count");
-            			Long friends_countrt = (Long)userrt.get("friends_count");
-            			Long favourites_countrt = (Long)userrt.get("favourites_count");
-            			Long statuses_countrt = (Long)userrt.get("statuses_count");
-            			String user_locationrt = (String)userrt.get("location");	
-            			String timezonert = (String)userrt.get("time_zone");
-            			
-            			//end
-            			System.out.println(timezonert);
+            			if(rt !=null){
+		            			Tweet retw = (Tweet)parseTweet(rt);
             			}
-            			
-            		}else{
-            			//System.out.println("deleted tweet");
             		}
             		
-            		
-            	}
-            	
+            	}else{
+            			//System.out.println("deleted tweet");
+            		}
             }
-            
-            
-            
-            
+            	
             // add record zkb
        //     JsonHbaseLoader.addRecord(tablename, "zkb", "grade", "", "5");
-          } catch (Exception e) {
+       }catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    private static Tweet parseTweet(JSONObject tweet){
+    	Tweet tw = new Tweet();
+		//get tweet details
+		//start
+    	JSONObject tweetO = (JSONObject)tweet;
+		tw.setId((Long)tweetO.get("id"));
+		tw.setTime( (String) tweetO.get("created_at"));
+		tw.setTweetText((String)tweetO.get("text"));
+		tw.setRetweetCount((Long)tweetO.get("retweet_count"));
+		tw.setLanguage((String)tweetO.get("lang"));
+		tw.setSource((String)tweetO.get("source"));
+		
+		//get location data
+		JSONObject coordinates = (JSONObject)tweetO.get("coordinates");
+		if((coordinates!=null)){
+			JSONArray latandlong = (JSONArray) coordinates.get("coordinates");
+			tw.setLatitude((Double)latandlong.get(0));
+			tw.setLongitude((Double)latandlong.get(1));
+		}
+		JSONObject place = (JSONObject)tweetO.get("place");
+		if(place!=null){
+			tw.setPlace((String)place.get("full_name"));
+			tw.setCountry((String)place.get("country"));
+		}
+		
+		//get user data
+		JSONObject user = (JSONObject) tweetO.get("user");
+		tw.setUser_name((String)user.get("name"));
+		tw.setFollowers_count((Long)user.get("followers_count"));
+		tw.setFriends_count((Long)user.get("friends_count"));
+		tw.setFavourites_count((Long)user.get("favourites_count"));
+		tw.setStatuses_count((Long)user.get("statuses_count"));
+		tw.setUser_location((String)user.get("location"));	
+		tw.setTimezone((String)user.get("time_zone"));
+    	return tw;
+    }
+    
 }
