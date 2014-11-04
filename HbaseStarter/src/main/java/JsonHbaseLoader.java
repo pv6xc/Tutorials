@@ -158,7 +158,8 @@ public class JsonHbaseLoader {
             		//if will process all the created tweets
             		if(tweetO.get("created_at")!=null){
             			
-            			//get the time when created
+            			//get tweet details
+            			//start
             			Long id = (Long)tweetO.get("id");
             			String time = (String) tweetO.get("created_at");
             			String tweetText = (String)tweetO.get("text");
@@ -180,8 +181,11 @@ public class JsonHbaseLoader {
             			String user_location = (String)user.get("location");	
             			String timezone = (String)user.get("time_zone");
             			
+            			//end
+            			
             			
             			//parsing the retweeted tweet data 
+            			// start
             			
             			JSONObject rt = (JSONObject)tweetO.get("retweeted_status");
             			if(rt!=null){
@@ -196,7 +200,7 @@ public class JsonHbaseLoader {
             			//String coordinates = (String)tweetO.get("coordinates");
             			//String place = (String)tweetO.get("place");
             			
-            			//get user data
+            			//get user data for retweet
             			JSONObject userrt = (JSONObject) rt.get("user");
             			String user_namert = (String)userrt.get("name");
             			Long followers_countrt = (Long)userrt.get("followers_count");
@@ -206,6 +210,7 @@ public class JsonHbaseLoader {
             			String user_locationrt = (String)userrt.get("location");	
             			String timezonert = (String)userrt.get("time_zone");
             			
+            			//end
             			System.out.println(timezonert);
             			}
             			
