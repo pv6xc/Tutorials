@@ -27,6 +27,8 @@ import org.json.simple.parser.JSONParser;
 public class JsonHbaseLoader {
  
     private static org.apache.hadoop.conf.Configuration conf = null;
+    private static HTable table = null;
+    private static String tablename = null;
     /**
      * Initialization
      */
@@ -35,6 +37,12 @@ public class JsonHbaseLoader {
         conf.set("hbase.zookeeper.quorum", "vmlab");
         conf.set("hbase.zookeeper.property.clientPort","2181");
         conf.set("hbase.master", "vmlab:60000");
+        tablename = "twittertable";
+        try {
+			 table = new HTable(conf, tablename);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
  
     /**
@@ -77,13 +85,12 @@ public class JsonHbaseLoader {
     public static void addRecord(String tableName, String rowKey,
             String family, String qualifier, String value) throws Exception {
         try {
-            HTable table = new HTable(conf, tableName);
+            
             Put put = new Put(Bytes.toBytes(rowKey));
             put.add(Bytes.toBytes(family), Bytes.toBytes(qualifier), Bytes
                     .toBytes(value));
             table.put(put);
-            System.out.println("insert recored " + rowKey + " to table "
-                    + tableName + " ok.");
+            //System.out.println("insert recored " + rowKey + " to table "+ tableName + " ok.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -141,14 +148,15 @@ public class JsonHbaseLoader {
  
     public static void main(String[] args) {
         try {
-            String tablename = "test1234";
-            String[] familys = { "grade", "course" };
+            
+            String[] familys = { "td", "ld" };
             //JsonHbaseLoader.creatTable(tablename, familys);
             
             //read Json data from file and parse Json to get required data.
-            File file = new File("sampletweets");
+            File file = new File("/Users/prakash/Desktop/1018");
             BufferedReader br = new BufferedReader(new FileReader(file));
             String tweet;
+            Tweet tw=null;
             //read each tweet from file
             while( (tweet=br.readLine())!=null){
             	
@@ -158,21 +166,53 @@ public class JsonHbaseLoader {
             		//check if tweet is created or deleted
             		//Condition will process all the created tweets
             		if(tweetO.get("created_at")!=null){
-            			Tweet tw = (Tweet)parseTweet(tweetO);
+            			 tw = (Tweet)parseTweet(tweetO);
             			/************************************ retweet start ********************************/
             			JSONObject rt = (JSONObject)tweetO.get("retweeted_status");
             			if(rt !=null){
 		            			Tweet retw = (Tweet)parseTweet(rt);
             			}
+            		//load data into table
+            			if(tw.getCountry()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "ld", "country", tw.getCountry());
+            			if(tw.getPlace()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "ld", "place", tw.getPlace());
+            			if(tw.getTime()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "ld", "time", tw.getTime());
+            			if(tw.getTimezone()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "ld", "timezone", tw.getTimezone());
+            			if(tw.getUser_location()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "ld", "user_location", tw.getUser_location());
+            			if(tw.getLongitude()!=null && tw.getLatitude()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "ld", "coordinates", String.valueOf(tw.getLatitude()) + "," + String.valueOf(tw.getLongitude()));
+            			if(tw.getSource()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "source", tw.getSource());
+            			if(tw.getTweetText()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "text", tw.getTweetText());
+            			if(tw.getUser_name()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "user_name", tw.getUser_name());
+            			if(tw.getFavourites_count()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "favourites_count", String.valueOf(tw.getFavourites_count()));
+            			if(tw.getFollowers_count()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "followers_count", String.valueOf(tw.getFollowers_count()));
+            			if(tw.getFriends_count()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "friends_count", String.valueOf(tw.getFriends_count()));
+            			if(tw.getRetweetCount()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "retweetCounnt", String.valueOf(tw.getRetweetCount()));
+            			if(tw.getStatuses_count()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "statuses_count", String.valueOf(tw.getStatuses_count()));
+            			if(tw.getLanguage()!=null)
+            		JsonHbaseLoader.addRecord(tablename, String.valueOf(tw.getId()), "td", "language", tw.getLanguage());
+            		//System.out.println(tw.getSource()+"\t"+tw.getTimezone());
             		}
-            		
             	}else{
-            			//System.out.println("deleted tweet");
+            				
             		}
             }
+            System.out.println("done!");
             	
             // add record zkb
-       //     JsonHbaseLoader.addRecord(tablename, "zkb", "grade", "", "5");
+       
        }catch (Exception e) {
             e.printStackTrace();
         }

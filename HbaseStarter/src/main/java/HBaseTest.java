@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.configuration.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
@@ -17,6 +16,7 @@ import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.client.coprocessor.AggregationClient;
 import org.apache.hadoop.hbase.util.Bytes;
  
 public class HBaseTest {
@@ -114,12 +114,18 @@ public class HBaseTest {
     }
     /**
      * Scan (or list) a table
+     * @throws Throwable 
      */
-    public static void getAllRecord (String tableName) {
+    public static void getAllRecord (String tableName) throws Throwable {
         try{
-             HTable table = new HTable(conf, tableName);
-             Scan s = new Scan();
-             ResultScanner ss = table.getScanner(s);
+            
+        	
+        	HTable table = new HTable(conf, tableName);
+            
+        	Scan s = new Scan();
+
+        	ResultScanner ss = table.getScanner(s);
+             int count = 0;
              for(Result r:ss){
                  for(KeyValue kv : r.raw()){
                     System.out.print(new String(kv.getRow()) + " ");
@@ -128,39 +134,22 @@ public class HBaseTest {
                     System.out.print(kv.getTimestamp() + " ");
                     System.out.println(new String(kv.getValue()));
                  }
+                 count++;
              }
+             System.out.println(count);
         } catch (IOException e){
             e.printStackTrace();
         }
     }
  
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Throwable {
         try {
-            String tablename = "test1234";
-            String[] familys = { "grade", "course" };
-            HBaseTest.creatTable(tablename, familys);
- 
-            // add record zkb
-            HBaseTest.addRecord(tablename, "zkb", "grade", "", "5");
-            HBaseTest.addRecord(tablename, "zkb", "course", "", "90");
-            HBaseTest.addRecord(tablename, "zkb", "course", "math", "97");
-            HBaseTest.addRecord(tablename, "zkb", "course", "art", "87");
-            // add record baoniu
-            HBaseTest.addRecord(tablename, "baoniu", "grade", "", "4");
-            HBaseTest.addRecord(tablename, "baoniu", "course", "math", "89");
- 
-            System.out.println("===========get one record========");
-            HBaseTest.getOneRecord(tablename, "zkb");
- 
+            String tablename = "twittertable";
+            String[] familys = { "td", "ld" };
+            //HBaseTest.creatTable(tablename, familys);
             System.out.println("===========show all record========");
             HBaseTest.getAllRecord(tablename);
- 
-            System.out.println("===========del one record========");
-            HBaseTest.delRecord(tablename, "baoniu");
-            HBaseTest.getAllRecord(tablename);
- 
-            System.out.println("===========show all record========");
-            HBaseTest.getAllRecord(tablename);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -20,6 +20,9 @@ public class Tweet {
 	private Double longitude;
 	private String place;
 	private String country;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
